@@ -1,0 +1,82 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   crossorigin=""/>
+  
+<style>
+    #mapid{ height: 100% }
+</style>
+
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+   integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+   crossorigin=""></script>
+
+
+  
+</head>
+<body>
+  
+  
+  
+<div id="mapid"></div>
+  <script>
+  var mymap = L.map('mapid').setView([38.61, -90.21], 12);
+    L.tileLayer('http://a.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+        attribution: 'Map tiles by Stamen Design, under CC BY 3.0.',
+        maxZoom: 18,
+        id: 'mapbox.streets'
+    }).addTo(mymap); 
+    
+  var rcIcon = L.icon({
+    iconUrl: 'http://www.rosalitascantina.com/wp-content/uploads/2017/04/Rosalitas-Logo-footer-2.png',
+    iconSize: [50,40],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76]
+  });
+      
+  var vdsIcon = L.icon({
+    iconUrl: 'https://assets.dryicons.com/uploads/icon/preview/1044/large_2x_france.png',
+    iconSize: [50,40],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76]
+  });
+      
+  var folIcon = L.icon({
+    iconUrl: 'http://www.fountainonlocust.com/styled-2/files/fol_logoivory.png',
+    iconSize: [50,40],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76]
+  });
+    
+  var tdfcIcon = L.icon({
+    iconUrl: 'http://static1.squarespace.com/static/54e78dc5e4b08d8eee3be194/t/54e7b744e4b08db9da80a46d/1531355022383/',
+    iconSize: [50,40],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76]
+  });
+       
+  var ocpIcon = L.icon({
+    iconUrl: 'https://assets.dryicons.com/uploads/icon/preview/7710/small_2x_37869d01-d6fb-41a8-98da-b983c2e389fb.png',
+    iconSize: [50,40],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76]
+  });
+    
+  var marker1 = L.marker([38.6323354, -90.1980795], {icon: rcIcon}).addTo(mymap);
+  var marker2 = L.marker([38.6213405, -90.2129553], {icon: vdsIcon}).addTo(mymap);
+  var marker3 = L.marker([38.6363013, -90.2230015], {icon: folIcon}).addTo(mymap);
+  var marker4 = L.marker([38.6384102, -90.307591], {icon: tdfcIcon}).addTo(mymap);
+  var marker5 = L.marker([38.6174552, -90.2660429], {icon: ocpIcon}).addTo(mymap);
+    
+  marker1.bindPopup("<b>Rosalita's Cantina").openPopup();
+  marker2.bindPopup("<b>Vin de Set").openPopup();
+  marker3.bindPopup("<b>The Fountain On Locust").openPopup();
+  marker4.bindPopup("<b>Ted Drewes Frozan Custard").openPopup();
+  marker5.bindPopup("<b>O'Connell's Pub").openPopup();
+    
+          
+  </script>
+</body>
+</html>
