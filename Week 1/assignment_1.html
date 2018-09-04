@@ -22,12 +22,10 @@
   
 <div id="mapid"></div>
   <script>
-  var mymap = L.map('mapid').setView([38.61, -90.21], 12);
-    L.tileLayer('http://a.tile.stamen.com/toner/{z}/{x}/{y}.png', {
-        attribution: 'Map tiles by Stamen Design, under CC BY 3.0.',
-        maxZoom: 18,
-        id: 'mapbox.streets'
-    }).addTo(mymap); 
+  var map = L.map('map').setView([50, 9], 10);
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+}).addTo( map ); 
     
   var rcIcon = L.icon({
     iconUrl: 'http://www.rosalitascantina.com/wp-content/uploads/2017/04/Rosalitas-Logo-footer-2.png',
