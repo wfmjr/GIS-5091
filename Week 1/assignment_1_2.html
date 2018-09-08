@@ -36,6 +36,7 @@
     pointToLayer: function(feature,latlng){
 	var marker = L.marker(latlng,{icon: crimeIcon});
     	marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
+	    return marker;
 	return L.marker(latlng,{icon: crimeIcon});
     }
   }  ).addTo(map);
