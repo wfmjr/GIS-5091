@@ -37,16 +37,16 @@
     iconSize: [50,40]
   }); 
 	  
+    var marker = L.marker(latlng,{icon: crimeIcon});
+    marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
+    return marker;
+	  
   L.geoJson(data  ,{
     pointToLayer: function(feature,latlng){
 	  return L.marker(latlng,{icon: crimeIcon});
     }
   }  ).addTo(map);
 	  
-  var marker = L.marker(latlng,{icon: crimeIcon});
-  marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
-  return marker;
- 
-  </script>
+   </script>
 </body>
 </html>
