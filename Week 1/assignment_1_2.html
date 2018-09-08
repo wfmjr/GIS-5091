@@ -28,7 +28,7 @@
     
   // load GeoJSON from an external file
   $.getJSON("sf_crime.geojson",function(data){
-     var crimeIcon = L.icon({
+    var crimeIcon = L.icon({
     iconUrl: 'http://chittagongit.com//images/crime-icon/crime-icon-5.jpg',
     iconSize: [50,40]
   });   
@@ -36,7 +36,6 @@
     pointToLayer: function(feature,latlng){
 	var marker = L.marker(latlng,{icon: crimeIcon});
     	marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
-	  return marker;
 	return L.marker(latlng,{icon: crimeIcon});
     }
   }  ).addTo(map);
