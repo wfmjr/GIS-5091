@@ -32,7 +32,12 @@
     iconUrl: 'http://chittagongit.com//images/crime-icon/crime-icon-5.jpg',
     iconSize: [50,40]
   });   
-  L.geoJson(data  ,{
+  L.geoJson(data  ,{ style: function (feature) {
+       return {[style properties here};
+   },
+   onEachFeature: function (feature, layer) {
+       layer.bindPopup(feature.properties.description + </br> + feature.properties.date);
+   }
         pointToLayer: function(feature,latlng){
 	var marker = L.marker(latlng,{icon: crimeIcon});
     	marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
