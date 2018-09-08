@@ -30,7 +30,7 @@
   $.getJSON("sf_crime.geojson",function(data){
     var crimeIcon = L.icon({
     iconUrl: 'https://www.featurepics.com/FI/Thumb300/20160628/Handcuff-Icon-4134616.jpg',
-    iconSize: [40,30]
+    iconSize: [0,0]
   });   
   L.geoJson(data  ,{
         pointToLayer: function(feature,latlng){
