@@ -35,15 +35,13 @@
     var crimeIcon = L.icon({
     iconUrl: 'http://chittagongit.com//images/crime-icon/crime-icon-5.jpg',
     iconSize: [50,40]
-  }); 
-	  
-    var marker = L.marker(latlng,{icon: crimeIcon});
-    marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
-    return marker;
-	  
+  });   
   L.geoJson(data  ,{
     pointToLayer: function(feature,latlng){
-	  return L.marker(latlng,{icon: crimeIcon});
+	var marker = L.marker(latlng,{icon: crimeIcon});
+    	marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
+	  return marker;
+	    return L.marker(latlng,{icon: crimeIcon});
     }
   }  ).addTo(map);
 	  
