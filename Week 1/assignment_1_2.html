@@ -33,6 +33,7 @@
     iconSize: [50,40]
   });   
   L.geoJson(data  ,{
+    onEachFeature: function (feature, layer) {
     pointToLayer: function(feature,latlng){
 	var marker = L.marker(latlng,{icon: crimeIcon});
     	marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
