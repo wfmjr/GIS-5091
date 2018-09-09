@@ -37,7 +37,7 @@
 	var marker = L.marker(latlng,{icon: crimeIcon});
     	marker.bindPopup(feature.properties.date + '<br/>' + '<b>' + feature.properties.title + '</b>'+ ': ' + feature.properties.description);
 	    return marker;
-	return L.marker(latlng,{icon: crimeIcon});
+	// return L.marker(latlng,{icon: crimeIcon});
     }
   }  ).addTo(map);
    }); 	  
