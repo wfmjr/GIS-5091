@@ -39,8 +39,26 @@
        ************************************************************/
       var webmap = new WebMap({
         portalItem: { // autocasts as new PortalItem()
-          id: "5925454a55af4886a54ef9dd48431516"
+          id: "09e3e200e38544cf9ddd21b9a7056bd8"
         }
+      });
+
+      /************************************************************
+       * Set the WebMap instance to the map property in a MapView.
+       ************************************************************/
+      var view = new MapView({
+        map: webmap,
+        container: "viewDiv"
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
       });
 
       /************************************************************

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Intro to FeatureLayer - 4.8</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.8/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    require([
+        "esri/Map",
+        "esri/views/MapView",
+
+        "esri/layers/FeatureLayer",
+
+        "dojo/domReady!"
+      ],
+      function(
+        Map, MapView,
+        FeatureLayer
+      ) {
+
+        var map = new Map({
+          basemap: "hybrid"
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
+
+          extent: { // autocasts as new Extent()
+            xmin: -8916735.80801294,
+            ymin: 4916266.273268303,
+            xmax: -8889245.54469908,
+            ymax: 4940152.65724087,
+            spatialReference: 102100
+          }
+        });
+
+        /********************
+         * Add feature layer
+         ********************/
+
+        // Carbon storage of trees in Warren Wilson College.
+         var featureLayer = new FeatureLayer({
+          url: "https://services1.arcgis.com/YZCmUqbcsUpOKfj7/arcgis/rest/services/PGHWebPoliceSectors/FeatureServer"
+        });
+
+        map.add(featureLayer);        
+        
+         var featureLayer2 = new FeatureLayer({
+          url: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/Crime_Offenses/FeatureServer"
+        });
+        
+        map.add(featureLayer2);
+        
+        
+
+      });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
