@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>CSVLayer - 4.8</title>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.8/"></script>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/layers/CSVLayer",
+      "esri/views/SceneView",
+      "esri/config",
+      "esri/core/urlUtils",
+      "dojo/domReady!"
+    ], function(
+      Map,
+      CSVLayer,
+      SceneView,
+      esriConfig,
+      urlUtils
+    ) {
+
+      // If CSV files are not on the same domain as your website, a CORS enabled server
+      // or a proxy is required.
+      var url =
+        "https://raw.githubusercontent.com/gbrunner/Advanced_Python_for_GIS_and_RS/master/Week%202/stl_crime_wgs_84.csv";
+      esriConfig.request.corsEnabledServers.push(url);
+
+      var template = {
+        title: "St. Louis Crimes",
+        content: "Total crimes reported in St. Louis City."
+      };
+
+      var csvLayer = new CSVLayer({
+        url: url,
+        copyright: "STLPD",
+        popupTemplate: template,
+        
+      });
+
+      var symbol = {
+        type: "simple-marker", 
+        color:"red"
+      };
+    
+      csvLayer.renderer = {
+        type: "simple", // autocasts as new SimpleRenderer()
+        symbol: symbol
+      };
+
+      var map = new Map({
+        basemap: "gray",
+        layers: [csvLayer]
+      });
+
+      var view = new SceneView({
+        container: "viewDiv",
+        center: [-90.23, 38.627],
+        zoom: 11,
+        map: map
+      });
+
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
