@@ -1,66 +1,87 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
-    <title>CSVLayer sample</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/3.25/esri/css/esri.css">
-    <style>
-      html, body, #map {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        background-color: #FFF;
-        overflow: hidden;
-        font-family: "Trebuchet MS";
-      }
-    </style>
-    <script src="https://js.arcgis.com/3.25/"></script>
-    <script>
-      var map, csv;
 
-      require([
-        "esri/map", 
-        "esri/layers/CSVLayer",
-        "esri/Color",
-        "esri/symbols/SimpleMarkerSymbol",
-        "esri/renderers/SimpleRenderer",
-        "esri/InfoTemplate",
-        "esri/config",
-        "dojo/domReady!"
-      ], function(
-        Map, CSVLayer, Color, SimpleMarkerSymbol, SimpleRenderer, InfoTemplate, esriConfig
-      ) {
-        
-        // Use CORS
-       // esriConfig.defaults.io.corsEnabledServers.push("earthquake.usgs.gov"); // supports CORS
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>CSVLayer - 4.8</title>
 
-        // Use proxy if the server doesn't support CORS
-        // esriConfig.defaults.io.proxyUrl = "/proxy/";  
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.8/"></script>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/layers/CSVLayer",
+      "esri/views/SceneView",
+      "esri/config",
+      "esri/core/urlUtils",
+      "dojo/domReady!"
+    ], function(
+      Map,
+      CSVLayer,
+      SceneView,
+      esriConfig,
+      urlUtils
+    ) {
+
+      // If CSV files are not on the same domain as your website, a CORS enabled server
+      // or a proxy is required.
+      var url =
+        "https://raw.githubusercontent.com/gbrunner/Advanced_Python_for_GIS_and_RS/master/Week%202/stl_crime_wgs_84.csv";
+      esriConfig.request.corsEnabledServers.push(url);
+
+      var template = {
+        title: "St. Louis Crimes",
+        content: "Total crimes reported in St. Louis City."
+      };
+
+      var csvLayer = new CSVLayer({
+        url: url,
+        copyright: "STLPD",
+        popupTemplate: template,
         
-        map = new Map("map", {
-          basemap: "gray",
-          center: [ -90.1994, 38.627],
-          zoom: 12 
-        });
-      var url = "https://raw.github.com/gbrunner/Advanced_Python_for_GIS_and_RS/blob/master/Week%202/stl_crime_wgs_84.csv";
+      });
+
       var symbol = {
         type: "simple-marker", 
         color:"red"
-};
-
+      };
+    
       csvLayer.renderer = {
-       type: "simple", // autocasts as new SimpleRenderer()
-       symbol: symbol
-};
-      });
-    </script>
-  </head>
+        type: "simple", // autocasts as new SimpleRenderer()
+        symbol: symbol
+      };
 
-  <body>
-    <div id="map"></div>
-  </body>
+      var map = new Map({
+        basemap: "gray",
+        layers: [csvLayer]
+      });
+
+      var view = new SceneView({
+        container: "viewDiv",
+        center: [-90.23, 38.627],
+        zoom: 11,
+        map: map
+      });
+
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
 </html>
