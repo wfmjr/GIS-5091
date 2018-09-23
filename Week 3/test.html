@@ -13,27 +13,22 @@
       height: 100%;
       width: 100%;
     }
-     #info {
-      position: absolute;
-      top: 5px;
-      right: 700px;
-      width: 150px;
-      padding: 5px;
-      font-size: 1.5em;
-      background-color: rgba(230, 255, 255, 0.8);
-      text-align: center;
-    }
      #description {
-      background-color: #e6ffff;
+      background-color: #ffffff;
       padding: 5px;
       font-size: 1.2em;
     }
     #description1 {
-      background-color: #e6ffff;
+      background-color: #ffffff;
       padding: 5px;
       font-size: 1.2em;
     }
-</style>
+    #description2 {
+      background-color: #ffffff;
+      padding: 5px;
+      font-size: 1.2em;
+    }
+  </style>
 
   <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
   <script src="https://js.arcgis.com/4.8/"></script>
@@ -76,9 +71,9 @@
       });
       // Add the home button to the top left corner of the view
     view.ui.add(homeBtn, "top-left");
-    view.ui.add("description", "top-right");
+    view.ui.add("description", "top-center");
     
-    [v1, v2, description1,v3,v4,v5,v6].forEach(function(button) {
+    [v1, v2, description1,v3,v4,v5,v6,description2,v7].forEach(function(button) {
       button.style.display = 'flex';
       view.ui.add(button, 'top-right');
     });
@@ -209,12 +204,10 @@
   <button id="v4" class="off">Harvard</button>
   <button id="v5" class="off">MIT</button>
   <button id="v6" class="off">Yale</button>
-  <div id="description">Boston Marathon</div>
+  <button id="v7" class="off">Atlantic View</button>
+  //<div id="description">Boston Marathon</div>
   <div id="description1">Colleges</div>
-  <div id="info">
-    <p>City of Boston</p>
-    <button id="v7">Downtown</button>
-  </div>  
+  <div id="description2">Downtown</div>
 </body>
 
 </html>
