@@ -14,12 +14,15 @@
        width: 100%;
      }
       #info {
-       position: absolute;
-       top: 5px;
-       right: 700px;
-       width: 150px;
-       padding: 5px;
-       font-size: 1.5em;
+        z-index: 99;
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      padding: 5px;
+      margin-left: -175px;
+      height: 110px;
+      width: 150px;
+      font-size: 1.5em;
        background-color: rgba(230, 255, 255, 0.8);
        text-align: center;
      }
@@ -61,17 +64,18 @@
         position: [
           -71.0594,// lon of Boston
           42.3610, // lat of Boston
-          15000// elevation in meters
           20000// elevation in meters
         ],
         tilt:0,
         heading: 0
        });
+       
        var view = new SceneView({
          container: "viewDiv",
          map: scene,
          camera: camera
      });
+     
      var homeBtn = new Home({
          view: view
        });
@@ -220,4 +224,4 @@
    </div>  
  </body>
  
- </html>
+</html>
