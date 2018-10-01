@@ -42,18 +42,14 @@
           center: [8, -11],
           zoom: 6
         });
-
         const esriStreets = L.esri.basemapLayer('Streets').addTo(map);
-
         const ebola_cases = L.esri.featureLayer({url: 'https://services.arcgis.com/SgB3dZDkkUxpEHxu/arcgis/rest/services/Ebola_TotalCases/FeatureServer/0'}).addTo(map);
-
         ebola_cases.bindPopup(function(evt) {
           var featureDate = new Date(evt.feature.properties.date);
           return L.Util.template('<h3>Administrative Level 1: {location}</h3><hr /><p>Ebola case located at {Ycoord}, {Xcoord} on this date: ' + featureDate.toDateString() + '.', evt.feature.properties);
         }); 
       
         const ebola_treatment_units = L.esri.featureLayer({url: 'https://services7.arcgis.com/JEwYeAy2cc8qOe3o/arcgis/rest/services/Ebola_Treatment_Units/FeatureServer/1'}).addTo(map);
-
         ebola_treatment_units.bindPopup(function(evt) {
           return L.Util.template('<h3>Ebola Treatment Units</h3><hr /><p>Hospital Name: {OUA_Name} <p>Location: {CITY}, {COUNTRY}<p>Status: {STATUS}<p>Number of beds: {Bed}', evt.feature.properties);
         }); 
@@ -68,13 +64,13 @@
        const guinea = L.esri.featureLayer({url: 'https://services.arcgis.com/juzF6a1l6VeqedSj/arcgis/rest/services/West_Africa_Admin_Units_Guinea/FeatureServer/0'}).addTo(map);
         
         guinea.bindPopup(function(evt) {
-          return L.Util.template('<h3>Region: {NAME_1}</h3>', evt.feature.properties);
+          return L.Util.template('<h3>Prefecture: {NAME_2}</h3>', evt.feature.properties);
         });
       
        const sierra_leone = L.esri.featureLayer({url: 'https://services1.arcgis.com/ZGrptGlLV2IILABw/arcgis/rest/services/Sierre_Leone_Districts/FeatureServer/0'}).addTo(map);
         
         sierra_leone.bindPopup(function(evt) {
-          return L.Util.template('<h3>District: {NAME_1}h3>', evt.feature.properties);
+          return L.Util.template('<h3>District: {NAME_2}<h3>', evt.feature.properties);
         });
         
         var adms = L.layerGroup([guinea, liberia, sierra_leone]
@@ -89,13 +85,9 @@
         "Admin Divisions": adms
      
         };
-
     //this just adds the layers control to the map
     L.control.layers(overlays, divisions).addTo(map);
    
-    </script>    
-</body>
-</html>
     </script>    
 </body>
 </html>
