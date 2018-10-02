@@ -68,13 +68,13 @@
        const guinea = L.esri.featureLayer({url: 'https://services.arcgis.com/juzF6a1l6VeqedSj/arcgis/rest/services/West_Africa_Admin_Units_Guinea/FeatureServer/0'}).addTo(map);
         
         guinea.bindPopup(function(evt) {
-          return L.Util.template('<h3>Region: {NAME_1}</h3>', evt.feature.properties);
+          return L.Util.template('<h3>Region: {NAME_2}</h3>', evt.feature.properties);
         });
       
        const sierra_leone = L.esri.featureLayer({url: 'https://services1.arcgis.com/ZGrptGlLV2IILABw/arcgis/rest/services/Sierre_Leone_Districts/FeatureServer/0'}).addTo(map);
         
         sierra_leone.bindPopup(function(evt) {
-          return L.Util.template('<h3>District: {NAME_1}h3>', evt.feature.properties);
+          return L.Util.template('<h3>District: {NAME_2}</h3>', evt.feature.properties);
         });
         
         var adms = L.layerGroup([guinea, liberia, sierra_leone]
