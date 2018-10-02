@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Leaflet Map with a Feature Layer</title>  
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+  <!-- Load Leaflet from CDN-->
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+    crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+    integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+    crossorigin=""></script>  
+
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js"
+    integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
+    crossorigin=""></script>
+
+  <!-- Load Esri Leaflet Renderers from CDN -->
+  <script src="https://unpkg.com/esri-leaflet-renderers@2.0.6/dist/esri-leaflet-renderers.js"
+    integrity="sha512-mhpdD3igvv7A/84hueuHzV0NIKFHmp2IvWnY5tIdtAHkHF36yySdstEVI11JZCmSY4TCvOkgEoW+zcV/rUfo0A=="
+    crossorigin=""></script>
+
+  <style>
+    html,
+    body,
+    #map {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>    
+    <div id="map"></div>
+
+    <script>
+        const map = L.map('map', {
+          center: [8, -11],
+          zoom: 6
+        });
+
+        const esriStreets = L.esri.basemapLayer('Streets').addTo(map);
+
+        const ebola_cases = L.esri.featureLayer({url: 'https://services.arcgis.com/SgB3dZDkkUxpEHxu/arcgis/rest/services/Ebola_TotalCases/FeatureServer/0'}).addTo(map);
+
+        ebola_cases.bindPopup(function(evt) {
+          var featureDate = new Date(evt.feature.properties.date);
+          return L.Util.template('<h3>Administrative Level 1: {location}</h3><hr /><p>Ebola case located at {Ycoord}, {Xcoord} on this date: ' + featureDate.toDateString() + '.', evt.feature.properties);
+        }); 
+      
+        const ebola_treatment_units = L.esri.featureLayer({url: 'https://services7.arcgis.com/JEwYeAy2cc8qOe3o/arcgis/rest/services/Ebola_Treatment_Units/FeatureServer/1'}).addTo(map);
+
+        ebola_treatment_units.bindPopup(function(evt) {
+          return L.Util.template('<h3>Ebola Treatment Units</h3><hr /><p>Hospital Name: {OUA_Name} <p>Location: {CITY}, {COUNTRY}<p>Status: {STATUS}<p>Number of beds: {Bed}', evt.feature.properties);
+        }); 
+      
+        const liberia = L.esri.featureLayer({url: 'https://services8.arcgis.com/QdE6XbpT6Y0mJucu/arcgis/rest/services/liberia_county/FeatureServer/0'}).addTo(map);
+        
+        liberia.bindPopup(function(evt) {
+          var totalPop = new Number(evt.feature.properties.Total)
+          return L.Util.template('<h3>County: {FIRST_FIRS}</h3><hr /><p>Total Population: ' + totalPop.toLocaleString('en'), evt.feature.properties);
+        });
+    
+       const guinea = L.esri.featureLayer({url: 'https://services.arcgis.com/juzF6a1l6VeqedSj/arcgis/rest/services/West_Africa_Admin_Units_Guinea/FeatureServer/0'}).addTo(map);
+        
+        guinea.bindPopup(function(evt) {
+          return L.Util.template('<h3>Region: {NAME_1}</h3>', evt.feature.properties);
+        });
+      
+       const sierra_leone = L.esri.featureLayer({url: 'https://services1.arcgis.com/ZGrptGlLV2IILABw/arcgis/rest/services/Sierre_Leone_Districts/FeatureServer/0'}).addTo(map);
+        
+        sierra_leone.bindPopup(function(evt) {
+          return L.Util.template('<h3>District: {NAME_1}h3>', evt.feature.properties);
+        });
+        
+        var adms = L.layerGroup([guinea, liberia, sierra_leone]
+        );
+      
+        var overlays = {
+        "Ebola Treament Units": ebola_treatment_units,
+        "Ebola Total Cases": ebola_cases
+        };
+      
+        var divisions ={
+        "Admin Divisions": adms
+     
+        };
+
+    //this just adds the layers control to the map
+    L.control.layers(overlays, divisions).addTo(map);
+   
+    </script>    
+</body>
+</html>
+    </script>    
+</body>
+</html>
