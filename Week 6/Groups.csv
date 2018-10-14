@@ -1,0 +1,4 @@
+access,description,isFav,isInvitationOnly,isViewOnly,phone,snippet,sortField,sortOrder,tags,thumbnail,title
+org,This group is for created webmaps,FALSE,TRUE,TRUE,null,Class assignment webmaps,title,asc,"Webmap, Class",https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg,Wayne_Webmaps
+org,This group is for feature services,FALSE,TRUE,TRUE,null,Class assignment feature services,,asc,"Feature Services, Class",http://blogs.esri.com/esri/arcgis/files/2014/10/FieldSchema.png,Wayne_Feature_Service
+org,This group is for all content,FALSE,TRUE,TRUE,null,Class assignment all content,,asc,"All Content, Class",http://www.cbnews.fr/var/media/hit/original/536282660_allcontentd.jpg,Wayne_All_Content
